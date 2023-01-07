@@ -1,7 +1,19 @@
+import { useEffect, useState } from "react";
+
 function CustomerList() {
+  const [customers, setCustomers] = useState([]);
+
+  useEffect(() => {
+    fetch("http://localhost:4000/api/customer")
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => setCustomers(res));
+  }, []);
+
   return (
     <div className="container">
-      <table class="table">
+      <table className="table">
         <thead>
           <tr>
             <th scope="col">Name</th>
@@ -13,14 +25,16 @@ function CustomerList() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
+          {customers.map((c) => (
+            <tr>
+              <td>{c.name}</td>
+              <td>{c.website}</td>
+              <td>{c.turnover}</td>
+              <td>{c.employees}</td>
+              <td>{c.ceo}</td>
+              <td>{c.year}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

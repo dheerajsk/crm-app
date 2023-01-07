@@ -4,8 +4,8 @@ import CustomerList from "../../components/Customer/CustomerList/CustomerList";
 function Customer() {
   return (
     <div>
-      {/* <CustomerList /> */}
-      <CustomerForm />
+      <CustomerList />
+      {/* <CustomerForm /> */}
     </div>
   );
 }
