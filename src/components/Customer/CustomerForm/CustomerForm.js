@@ -1,8 +1,25 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function CustomerForm() {
   const [customer, setCustomer] = useState({});
+  // useParams allows access to route parameters.
+  const { customerName } = useParams();
+  console.log(customerName);
+
+  if (customerName) {
+    fetch("http://localhost:4000/api/customer")
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        let result = res.find((c) => c.name === customerName);
+        if (result) {
+          setCustomer(result);
+        }
+      });
+  }
+
   const navigate = useNavigate();
 
   function handleFormSubmit() {
@@ -30,6 +47,7 @@ function CustomerForm() {
           Name
         </label>
         <input
+          value={customer.name}
           onChange={(e) => {
             customer.name = e.target.value;
             setCustomer(customer);
@@ -42,6 +60,7 @@ function CustomerForm() {
           Website
         </label>
         <input
+          value={customer.website}
           onChange={(e) => {
             customer.website = e.target.value;
             setCustomer(customer);
@@ -54,6 +73,7 @@ function CustomerForm() {
           Turnover
         </label>
         <input
+          value={customer.turnover}
           onChange={(e) => {
             customer.turnover = e.target.value;
             setCustomer(customer);
@@ -66,6 +86,7 @@ function CustomerForm() {
           No Of Employees
         </label>
         <input
+          value={customer.employees}
           onChange={(e) => {
             customer.employees = e.target.value;
             setCustomer(customer);
@@ -78,6 +99,7 @@ function CustomerForm() {
           CEO
         </label>
         <input
+          value={customer.ceo}
           onChange={(e) => {
             customer.ceo = e.target.value;
             setCustomer(customer);
@@ -90,6 +112,7 @@ function CustomerForm() {
           Established In
         </label>
         <input
+          value={customer.year}
           onChange={(e) => {
             customer.year = e.target.value;
             setCustomer(customer);

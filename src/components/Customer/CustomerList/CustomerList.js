@@ -20,6 +20,11 @@ function CustomerList() {
     navigate("form");
   }
 
+  function handleEditClick(name) {
+    console.log(name);
+    navigate("/form/" + name);
+  }
+
   return (
     <div className="container">
       <button onClick={handleNewCustomerClick} className="btn btn-success">
@@ -53,6 +58,13 @@ function CustomerList() {
                 <td>{c.employees}</td>
                 <td>{c.ceo}</td>
                 <td>{c.year}</td>
+                <td>
+                  <button
+                    onClick={() => handleEditClick(c.name)}
+                    className="btn btn-warning">
+                    Edit
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>

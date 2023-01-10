@@ -12,6 +12,8 @@ function App() {
         </Route>
         <Route path='form' element={<CustomerForm />}>
         </Route>
+        <Route path='form/:customerName' element={<CustomerForm />}>
+        </Route>
       </Routes>
     </BrowserRouter>
   );
