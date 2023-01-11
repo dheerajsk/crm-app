@@ -49,9 +49,12 @@ function CustomerForm() {
           Name
         </label>
         <input
+          readOnly="true"
           value={customerToUpdate.name}
           onInput={(e) => {
-            setUpdateCustomer({ name: e.target.value });
+            let obj = { ...customerToUpdate };
+            obj.name = e.target.value;
+            setUpdateCustomer(obj);
           }}
           type="text"
           className="form-control"></input>
@@ -63,7 +66,7 @@ function CustomerForm() {
         <input
           value={customerToUpdate.website}
           onInput={(e) => {
-            setUpdateCustomer({ website: e.target.value });
+            setUpdateCustomer({ ...customerToUpdate, website: e.target.value });
           }}
           type="text"
           className="form-control"></input>
@@ -75,7 +78,9 @@ function CustomerForm() {
         <input
           value={customerToUpdate.turnover}
           onInput={(e) => {
-            setUpdateCustomer({ turnover: e.target.value });
+            let obj = { ...customerToUpdate };
+            obj.turnover = e.target.value;
+            setUpdateCustomer(obj);
           }}
           type="number"
           className="form-control"></input>
@@ -87,7 +92,9 @@ function CustomerForm() {
         <input
           value={customerToUpdate.employees}
           onInput={(e) => {
-            setUpdateCustomer({ employees: e.target.value });
+            let obj = { ...customerToUpdate };
+            obj.employees = e.target.value;
+            setUpdateCustomer(obj);
           }}
           type="number"
           className="form-control"></input>
@@ -99,7 +106,9 @@ function CustomerForm() {
         <input
           value={customerToUpdate.ceo}
           onInput={(e) => {
-            setUpdateCustomer({ ceo: e.target.value });
+            let obj = { ...customerToUpdate };
+            obj.ceo = e.target.value;
+            setUpdateCustomer(obj);
           }}
           type="text"
           className="form-control"></input>
@@ -111,7 +120,9 @@ function CustomerForm() {
         <input
           value={customerToUpdate.year}
           onInput={(e) => {
-            setUpdateCustomer({ year: e.target.value });
+            let obj = { ...customerToUpdate };
+            obj.year = e.target.value;
+            setUpdateCustomer(obj);
           }}
           type="number"
           className="form-control"></input>
