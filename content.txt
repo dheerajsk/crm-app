@@ -6,3 +6,14 @@ Revenues.
 NumberOfEmployees.
 CEO.
 Established Year.
+
+
+1. Add edit button
+2. handle edit button click.
+3. on click of edit, pass customer name to function.
+4. inside function navigate to form url with customer name.
+5. add route for form/:customerName. customerName is parameter.
+6. in form component read value for customer parameter using useParams.
+7. call api to get all the customers and find the one using name.
+8. update state for found customer.
+9. bind customer values with form controls.

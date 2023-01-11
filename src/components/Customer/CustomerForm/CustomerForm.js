@@ -1,32 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 function CustomerForm() {
-  const [customer, setCustomer] = useState({});
+  const [customerToUpdate, setUpdateCustomer] = useState({});
   // useParams allows access to route parameters.
   const { customerName } = useParams();
   console.log(customerName);
 
-  if (customerName) {
-    fetch("http://localhost:4000/api/customer")
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => {
-        let result = res.find((c) => c.name === customerName);
-        if (result) {
-          setCustomer(result);
-        }
-      });
-  }
+  useEffect(() => {
+    if (customerName) {
+      fetch("http://localhost:4000/api/customer")
+        .then((res) => {
+          return res.json();
+        })
+        .then((res) => {
+          let result = res.find((c) => c.name === customerName);
+          if (result) {
+            setUpdateCustomer(result);
+          }
+        });
+    }
+  }, []);
 
   const navigate = useNavigate();
 
   function handleFormSubmit() {
-    console.log(customer);
+    console.log(customerToUpdate);
     fetch("http://localhost:4000/api/customer", {
       method: "POST",
-      body: JSON.stringify(customer),
+      body: JSON.stringify(customerToUpdate),
       headers: {
         "Content-Type": "application/json",
       },
@@ -47,10 +49,9 @@ function CustomerForm() {
           Name
         </label>
         <input
-          value={customer.name}
-          onChange={(e) => {
-            customer.name = e.target.value;
-            setCustomer(customer);
+          value={customerToUpdate.name}
+          onInput={(e) => {
+            setUpdateCustomer({ name: e.target.value });
           }}
           type="text"
           className="form-control"></input>
@@ -60,10 +61,9 @@ function CustomerForm() {
           Website
         </label>
         <input
-          value={customer.website}
-          onChange={(e) => {
-            customer.website = e.target.value;
-            setCustomer(customer);
+          value={customerToUpdate.website}
+          onInput={(e) => {
+            setUpdateCustomer({ website: e.target.value });
           }}
           type="text"
           className="form-control"></input>
@@ -73,10 +73,9 @@ function CustomerForm() {
           Turnover
         </label>
         <input
-          value={customer.turnover}
-          onChange={(e) => {
-            customer.turnover = e.target.value;
-            setCustomer(customer);
+          value={customerToUpdate.turnover}
+          onInput={(e) => {
+            setUpdateCustomer({ turnover: e.target.value });
           }}
           type="number"
           className="form-control"></input>
@@ -86,10 +85,9 @@ function CustomerForm() {
           No Of Employees
         </label>
         <input
-          value={customer.employees}
-          onChange={(e) => {
-            customer.employees = e.target.value;
-            setCustomer(customer);
+          value={customerToUpdate.employees}
+          onInput={(e) => {
+            setUpdateCustomer({ employees: e.target.value });
           }}
           type="number"
           className="form-control"></input>
@@ -99,10 +97,9 @@ function CustomerForm() {
           CEO
         </label>
         <input
-          value={customer.ceo}
-          onChange={(e) => {
-            customer.ceo = e.target.value;
-            setCustomer(customer);
+          value={customerToUpdate.ceo}
+          onInput={(e) => {
+            setUpdateCustomer({ ceo: e.target.value });
           }}
           type="text"
           className="form-control"></input>
@@ -112,10 +109,9 @@ function CustomerForm() {
           Established In
         </label>
         <input
-          value={customer.year}
-          onChange={(e) => {
-            customer.year = e.target.value;
-            setCustomer(customer);
+          value={customerToUpdate.year}
+          onInput={(e) => {
+            setUpdateCustomer({ year: e.target.value });
           }}
           type="number"
           className="form-control"></input>
