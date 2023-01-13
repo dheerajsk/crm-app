@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import CustomerList from './components/Customer/CustomerList/CustomerList';
 import CustomerForm from './components/Customer/CustomerForm/CustomerForm';
 import SignUp from './components/SignUp/SIgnUp';
+import SignIn from './components/SignIn/SignIn';
 
 function App() {
   return (
@@ -12,6 +13,8 @@ function App() {
         <Route path='/' element={<CustomerList />}>
         </Route>
         <Route path='/signup' element={<SignUp />}>
+        </Route>
+        <Route path='/signin' element={<SignIn />}>
         </Route>
         <Route path='form' element={<CustomerForm />}>
         </Route>
