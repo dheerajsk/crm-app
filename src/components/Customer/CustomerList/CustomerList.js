@@ -1,6 +1,7 @@
 import "./CustomerList.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import NavBar from "../../Navbar/Navbar";
 
 function CustomerList() {
   // Storing data in state
@@ -20,13 +21,26 @@ function CustomerList() {
     navigate("form");
   }
 
+  function handleDeleteClick(name) {
+    fetch("http://localhost:4000/api/customer/"+name, {
+      method:"DELETE"
+    })
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => setCustomers(res));
+  }
+
   function handleEditClick(name) {
     console.log(name);
     navigate("/form/" + name);
   }
 
   return (
+    <div>
+       <NavBar />
     <div className="container">
+     
       <button onClick={handleNewCustomerClick} className="btn btn-success">
         New Customer
       </button>
@@ -65,11 +79,19 @@ function CustomerList() {
                     Edit
                   </button>
                 </td>
+                <td>
+                  <button
+                    onClick={() => handleDeleteClick(c.name)}
+                    className="btn btn-danger">
+                    Delete
+                  </button>
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       )}
+    </div>
     </div>
   );
 }

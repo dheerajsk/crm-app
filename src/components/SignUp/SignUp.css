@@ -1,0 +1,29 @@
+
+
+.container{
+    margin-top: 100px !important;
+    display: flex;
+}
+
+.left, .right{
+    width: 50%;
+}
+
+.header{
+    margin-bottom: 56px !important;
+}
+
+.left{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.right{
+    border-left: 1px solid lightblue;
+    padding: 36px;
+}
+
+img{
+    width: 70%;
+}

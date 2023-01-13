@@ -3,12 +3,15 @@ import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import CustomerList from './components/Customer/CustomerList/CustomerList';
 import CustomerForm from './components/Customer/CustomerForm/CustomerForm';
+import SignUp from './components/SignUp/SIgnUp';
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<CustomerList />}>
+        </Route>
+        <Route path='/signup' element={<SignUp />}>
         </Route>
         <Route path='form' element={<CustomerForm />}>
         </Route>
