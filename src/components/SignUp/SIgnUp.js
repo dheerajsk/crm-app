@@ -8,6 +8,7 @@ function SignUp() {
 
   function handleRegister() {
     console.log(user);
+    // fetch returns a promise.
     fetch("http://localhost:4000/api/user/signup", {
       method: "POST",
       headers: {
@@ -16,10 +17,12 @@ function SignUp() {
       body: JSON.stringify(user),
     })
       .then((res) => {
+        // request is completed.
         console.log(res);
         navigate("/signin");
       })
       .catch((err) => {
+        // request has some errors.
         console.log(err);
       });
   }
