@@ -24,6 +24,7 @@ function SignIn() {
           setInvalidCreds(true);
         }else if(res.status==200){
           console.log("200");
+          localStorage.setItem("loggedIn", "true");
           navigate("/");
         }
       }

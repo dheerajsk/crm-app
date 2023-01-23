@@ -1,6 +1,18 @@
 
+import {useEffect, useState} from "react";
 
 function NavBar(){
+
+  const [isLoggedIn, setLoggedInStatus]=useState(false);
+
+  useEffect(()=>{
+    const value = localStorage.getItem("loggedIn");
+    if(value && value=="true"){
+      setLoggedInStatus(true);
+    }else{
+      setLoggedInStatus(false);
+    }
+  });
 
     return (
 <nav className="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
@@ -21,8 +33,17 @@ function NavBar(){
           <a className="nav-link disabled">Disabled</a>
         </li>
       </ul>
-      <a className="btn btn-success" href="/signup">Sign Up</a>&nbsp;&nbsp;&nbsp;
-      <a className="btn btn-primary" href="/signin">Sign In</a>
+     {
+      !isLoggedIn &&
+      <span>
+        <a className="btn btn-success" href="/signup">Sign Up</a>&nbsp;&nbsp;&nbsp;
+        <a className="btn btn-primary" href="/signin">Sign In</a>
+      </span>
+     }
+     {
+      isLoggedIn &&
+      <a className="btn btn-primary" href="#">Sign Out</a>
+     }
     
     </div>
   </div>
