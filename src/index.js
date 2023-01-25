@@ -2,12 +2,39 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import SecuredRoutes from "./components/SecuredRoutes/SecuredRoutes";
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import CustomerList from './components/Customer/CustomerList/CustomerList';
+import CustomerForm from './components/Customer/CustomerForm/CustomerForm';
+import SignUp from './components/SignUp/SIgnUp';
+import SignIn from './components/SignIn/SignIn';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+     <BrowserRouter>
+      <Routes>
+        <Route path='/' element={
+        <SecuredRoutes>
+          <CustomerList />
+        </SecuredRoutes>
+        }>
+        </Route>
+        <Route path='/signup' element={<SignUp />}>
+        </Route>
+        <Route path='/signin' element={<SignIn />}>
+        </Route>
+        <Route path='form' element={
+         <SecuredRoutes>
+            <CustomerForm />
+        </SecuredRoutes>
+      }>
+        </Route>
+        <Route path='form/:customerName' element={<CustomerForm />}>
+        </Route>
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

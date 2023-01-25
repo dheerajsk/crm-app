@@ -8,12 +8,6 @@ function CustomerList() {
   const [customers, setCustomers] = useState([]);
   const navigate = useNavigate();
 
-  // Check if user is logged in.
-  const isLoggedIn = localStorage.getItem("loggedIn");
-  if(!isLoggedIn || isLoggedIn!="true"){
-    navigate("signin");
-  }
-
   // Call the api.
   useEffect(() => {
     fetch("http://localhost:4000/api/customer")

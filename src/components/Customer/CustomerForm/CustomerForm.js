@@ -8,6 +8,8 @@ function CustomerForm() {
   const { customerName } = useParams();
   console.log(customerName);
 
+
+  const navigate = useNavigate();
   useEffect(() => {
     if (customerName) {
       fetch("http://localhost:4000/api/customer")
@@ -22,8 +24,6 @@ function CustomerForm() {
         });
     }
   }, []);
-
-  const navigate = useNavigate();
 
   function handleFormSubmit() {
     console.log(customerToUpdate);
