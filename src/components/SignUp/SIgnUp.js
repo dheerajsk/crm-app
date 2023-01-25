@@ -28,7 +28,7 @@ function SignUp() {
   }
 
   return (
-    <div className="container">
+    <div className="signup-container">
       <div className="left">
         <img
           src="https://img.freepik.com/premium-vector/crm-icons-customer-relationship-management-vector-infographics-template_116137-3703.jpg"
