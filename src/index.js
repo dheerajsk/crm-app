@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import SecuredRoutes from "./components/SecuredRoutes/SecuredRoutes";
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
@@ -9,6 +8,7 @@ import CustomerList from './components/Customer/CustomerList/CustomerList';
 import CustomerForm from './components/Customer/CustomerForm/CustomerForm';
 import SignUp from './components/SignUp/SIgnUp';
 import SignIn from './components/SignIn/SignIn';
+import UserList from './components/User/UserList';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -18,6 +18,12 @@ root.render(
         <Route path='/' element={
         <SecuredRoutes>
           <CustomerList />
+        </SecuredRoutes>
+        }>
+        </Route>
+        <Route path='/users' element={
+        <SecuredRoutes>
+          <UserList />
         </SecuredRoutes>
         }>
         </Route>

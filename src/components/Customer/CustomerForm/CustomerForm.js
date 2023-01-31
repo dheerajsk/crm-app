@@ -52,7 +52,6 @@ function CustomerForm() {
             Name
           </label>
           <input
-            readOnly="true"
             value={customerToUpdate.name}
             onInput={(e) => {
               let obj = { ...customerToUpdate };
@@ -91,6 +90,7 @@ function CustomerForm() {
             type="number"
             className="form-control"></input>
         </div>
+        
         <div className="mb-3">
           <label htmlFor="exampleFormControlInput1" className="form-label">
             No Of Employees
