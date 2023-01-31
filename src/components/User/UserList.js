@@ -17,13 +17,17 @@ function UserList(){
                 // update state with data.
                 setUsers(parsedResult);
             })
-    });
+    },[]);
 
     return(
         <div>
             <NavBar />
 
             <div className="container">
+            <a href="/userForm" className="btn btn-success">
+                New User
+            </a>
+
             <table class="table">
   <thead>
     <tr>
