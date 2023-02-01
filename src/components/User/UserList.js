@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import NavBar from "../Navbar/Navbar";
-
+import "./UserList.css";
 
 function UserList(){
     // state is storage which when changes, 
@@ -34,7 +34,7 @@ function UserList(){
       <th scope="col">Name</th>
       <th scope="col">Email</th>
       <th scope="col">Username</th>
-      <th scope="col">IsActive</th>
+      <th scope="col" className="activeStatus">IsActive</th>
     </tr>
   </thead>
   <tbody>
@@ -44,7 +44,17 @@ function UserList(){
             <td scope="row">{u.name}</td>
             <td>{u.email}</td>
             <td>{u.username}</td>
-            <td>{u.isActive ? 'Yes' : 'No'}</td>
+            <td className="activeStatus">
+            {
+              !u.isActive && 
+            <button className="btn btn-primary">Activate</button>
+            }
+            {
+              u.isActive && 
+            <button className="btn btn-danger">De-Activate</button>
+            }
+            
+            </td>
           </tr>
             
             )
