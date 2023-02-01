@@ -69,7 +69,7 @@ function UserList(){
             {
               u.isActive && 
             <button 
-            onClick={()=>{handleDeActivateClick(u.username)}}
+            onClick={handleDeActivateClick}
             className="btn btn-danger">De-Activate</button>
             }
             

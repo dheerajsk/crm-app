@@ -90,6 +90,25 @@ function CustomerForm() {
             type="number"
             className="form-control"></input>
         </div>
+
+        <div className="mb-3">
+          <label htmlFor="exampleFormControlInput1" className="form-label">
+            Status
+          </label>
+          <select 
+            onChange={
+              (e)=>{
+                let obj = { ...customerToUpdate };
+                obj.status = e.target.value;
+                setUpdateCustomer(obj);
+              }
+            }
+          className="form-select">
+            <option value="New">New</option>
+            <option value="Accepted">Accepted</option>
+            <option value="Rejected">Rejected</option>
+          </select>
+        </div>
         
         <div className="mb-3">
           <label htmlFor="exampleFormControlInput1" className="form-label">

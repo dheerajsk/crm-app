@@ -57,6 +57,7 @@ function CustomerList() {
               <th scope="col">Name</th>
               <th scope="col">Website</th>
               <th scope="col">Turnover</th>
+              <th>Status</th>
               <th scope="col">NumberOfEmployees</th>
               <th scope="col">CEO</th>
               <th scope="col">Established Year</th>
@@ -69,6 +70,7 @@ function CustomerList() {
                 <td>{c.name}</td>
                 <td>{c.website}</td>
                 <td>{c.turnover}</td>
+                <td>{c.status}</td>
                 <td>{c.employees}</td>
                 <td>{c.ceo}</td>
                 <td>{c.year}</td>
