@@ -19,6 +19,21 @@ function UserList(){
             })
     },[]);
 
+    function handleActivateClick(username){
+      fetch("http://localhost:4000/api/user/activate/"+username, {
+        method:"PUT"
+      }).then(res=> res.json())
+          .then(parsedResponse => setUsers(parsedResponse));
+    }
+
+    function handleDeActivateClick(username){
+      fetch("http://localhost:4000/api/user/deactivate/"+username, {
+        method:"PUT"
+      }).then(res=> res.json())
+          .then(parsedResponse => setUsers(parsedResponse));
+    }
+
+
     return(
         <div>
             <NavBar />
@@ -47,11 +62,15 @@ function UserList(){
             <td className="activeStatus">
             {
               !u.isActive && 
-            <button className="btn btn-primary">Activate</button>
+            <button 
+            onClick={()=>{handleActivateClick(u.username)}}
+            className="btn btn-primary">Activate</button>
             }
             {
               u.isActive && 
-            <button className="btn btn-danger">De-Activate</button>
+            <button 
+            onClick={()=>{handleDeActivateClick(u.username)}}
+            className="btn btn-danger">De-Activate</button>
             }
             
             </td>
