@@ -3,3 +3,18 @@
 .container{
     margin: 36px !important;
 }
+
+.st_green{
+    color: white;
+    background-color: green !important;
+}
+
+.st_red{
+    color: white;
+    background-color: red !important;
+}
+
+.st_blue{
+    color: white;
+    background-color: blue !important;
+}

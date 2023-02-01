@@ -36,6 +36,16 @@ function CustomerList() {
     navigate("/form/" + name);
   }
 
+  function getStatusCSS(status){
+    if(status=="New"){
+      return "st_blue";
+    }else if(status=="Accepted"){
+      return "st_green";
+    }else{
+      return "st_red";
+    }
+  }
+
   return (
     <div>
        <NavBar />
@@ -70,7 +80,13 @@ function CustomerList() {
                 <td>{c.name}</td>
                 <td>{c.website}</td>
                 <td>{c.turnover}</td>
-                <td>{c.status}</td>
+                <td className={
+                  c.status=="New" ? 'st_blue':
+                  c.status=="Accepted" ? 'st_green':
+                  'st_red'
+                  }>
+                  {c.status}
+                </td>
                 <td>{c.employees}</td>
                 <td>{c.ceo}</td>
                 <td>{c.year}</td>
