@@ -5,16 +5,22 @@ import NavBar from "../../Navbar/Navbar";
 
 function CustomerList() {
   // Storing data in state
+  console.log("rendering");
   const [customers, setCustomers] = useState([]);
+  const [filteredCustomers, setFilteredCustomers]=useState([]);
   const navigate = useNavigate();
 
+  console.log(filteredCustomers);
   // Call the api.
   useEffect(() => {
     fetch("http://localhost:4000/api/customer")
       .then((res) => {
         return res.json();
       })
-      .then((res) => setCustomers(res));
+      .then((res) => {
+        setCustomers(res);
+        setFilteredCustomers(res);
+      });
   }, []);
 
   function handleNewCustomerClick() {
@@ -47,7 +53,13 @@ function CustomerList() {
   }
 
   function handleSearch(key){
-    console.log(key);
+    if(!key || key.length==0){
+      setFilteredCustomers(customers);
+    }else{
+      const result = customers.filter(c=> c.name.includes(key));
+      setFilteredCustomers([...result]);
+      console.log(filteredCustomers);
+    }
   }
 
   return (
@@ -60,6 +72,7 @@ function CustomerList() {
       </button>
       <div className="search-box-wrapper">
         <input
+        placeholder="Search..."
         onInput={(e)=>{handleSearch(e.target.value)}}
         className="search-box" type="search" />&nbsp;&nbsp;
         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
@@ -69,13 +82,12 @@ function CustomerList() {
       
      </div>
      
-
-      {customers.length === 0 && (
+      {filteredCustomers.length === 0 && (
         <div class="alert alert-primary mt-3" role="alert">
           No Customers are available im system.
         </div>
       )}
-      {customers.length > 0 && (
+      {filteredCustomers.length > 0 && (
         <table className="table">
           <thead>
             <tr>
@@ -90,7 +102,7 @@ function CustomerList() {
           </thead>
           <tbody>
             {/* rendering data in table rows. */}
-            {customers.map((c) => (
+            {filteredCustomers.map((c) => (
               <tr>
                 <td>{c.name}</td>
                 <td>{c.website}</td>
