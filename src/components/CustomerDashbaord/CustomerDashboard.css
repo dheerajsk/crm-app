@@ -26,12 +26,12 @@
 
 .tile-accepted{
     background-color: #198754;
-    color: black;
+    color: white;
 }
 
 .tile-rejected{
     background-color: #dc3545;
-    color: black;
+    color: white;
 }
 
 .tile-text{

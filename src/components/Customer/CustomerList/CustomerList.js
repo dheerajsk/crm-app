@@ -9,6 +9,8 @@ function CustomerList() {
   console.log("rendering");
   const [customers, setCustomers] = useState([]);
   const [filteredCustomers, setFilteredCustomers]=useState([]);
+  const [counts, setCounts]=useState({});
+  
   const navigate = useNavigate();
 
   console.log(filteredCustomers);
@@ -21,6 +23,17 @@ function CustomerList() {
       .then((res) => {
         setCustomers(res);
         setFilteredCustomers(res);
+
+        let newCounts = res.filter(c=> c.status=="New").length;
+        let acceptedCounts = res.filter(c=> c.status=="Accepted").length;
+        let rejectedCounts = res.filter(c=> c.status=="Rejected").length;
+        let countObj = {
+          "new":newCounts,
+          "accepted":acceptedCounts,
+          "rejected":rejectedCounts,
+          "total":res.length
+        };
+        setCounts(countObj);
       });
   }, []);
 
@@ -68,7 +81,7 @@ function CustomerList() {
        <NavBar />
     <div className="container">
 
-      <CustomerDashboard />
+      <CustomerDashboard counts={counts} />
       <hr />
      <div className="table-header">
      <button onClick={handleNewCustomerClick} className="btn btn-success">
