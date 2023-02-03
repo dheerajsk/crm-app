@@ -2,6 +2,7 @@ import "./CustomerList.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../../Navbar/Navbar";
+import CustomerDashboard from "../../CustomerDashbaord/CustomerDashboard";
 
 function CustomerList() {
   // Storing data in state
@@ -66,6 +67,9 @@ function CustomerList() {
     <div>
        <NavBar />
     <div className="container">
+
+      <CustomerDashboard />
+      <hr />
      <div className="table-header">
      <button onClick={handleNewCustomerClick} className="btn btn-success">
         New Customer
