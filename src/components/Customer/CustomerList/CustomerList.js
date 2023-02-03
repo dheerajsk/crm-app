@@ -46,14 +46,29 @@ function CustomerList() {
     }
   }
 
+  function handleSearch(key){
+    console.log(key);
+  }
+
   return (
     <div>
        <NavBar />
     <div className="container">
-     
-      <button onClick={handleNewCustomerClick} className="btn btn-success">
+     <div className="table-header">
+     <button onClick={handleNewCustomerClick} className="btn btn-success">
         New Customer
       </button>
+      <div className="search-box-wrapper">
+        <input
+        onInput={(e)=>{handleSearch(e.target.value)}}
+        className="search-box" type="search" />&nbsp;&nbsp;
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+        </svg>
+      </div>
+      
+     </div>
+     
 
       {customers.length === 0 && (
         <div class="alert alert-primary mt-3" role="alert">
