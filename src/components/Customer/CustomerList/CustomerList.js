@@ -21,17 +21,17 @@ function CustomerList() {
         return res.json();
       })
       .then((res) => {
-        setCustomers(res);
-        setFilteredCustomers(res);
+        setCustomers(res.records);
+        setFilteredCustomers(res.records);
 
-        let newCounts = res.filter(c=> c.status=="New").length;
-        let acceptedCounts = res.filter(c=> c.status=="Accepted").length;
-        let rejectedCounts = res.filter(c=> c.status=="Rejected").length;
+        let newCounts = res.records.filter(c=> c.status=="New").length;
+        let acceptedCounts = res.records.filter(c=> c.status=="Accepted").length;
+        let rejectedCounts = res.records.filter(c=> c.status=="Rejected").length;
         let countObj = {
           "new":newCounts,
           "accepted":acceptedCounts,
           "rejected":rejectedCounts,
-          "total":res.length
+          "total":res.records.length
         };
         setCounts(countObj);
       });
@@ -105,6 +105,7 @@ function CustomerList() {
         </div>
       )}
       {filteredCustomers.length > 0 && (
+        <div className="table-parent">
         <table className="table">
           <thead>
             <tr>
@@ -152,6 +153,16 @@ function CustomerList() {
             ))}
           </tbody>
         </table>
+        <nav aria-label="Page navigation example">
+      <ul class="pagination">
+    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+  </ul>
+</nav>
+        </div>
       )}
     </div>
     </div>

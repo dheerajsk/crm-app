@@ -41,3 +41,13 @@
     border-radius: 6px;
     padding: 6px 12px;
 }
+
+.pagination{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.table-parent{
+    width: 100%;
+}
