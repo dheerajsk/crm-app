@@ -10,10 +10,10 @@ function CustomerList() {
   const [customers, setCustomers] = useState([]);
   const [filteredCustomers, setFilteredCustomers]=useState([]);
   const [counts, setCounts]=useState({});
+  const [pages, setPages]=useState([]);
   
   const navigate = useNavigate();
 
-  console.log(filteredCustomers);
   // Call the api.
   useEffect(() => {
     fetch("http://localhost:4000/api/customer")
@@ -34,6 +34,11 @@ function CustomerList() {
           "total":res.records.length
         };
         setCounts(countObj);
+
+        let totalPages = Math.floor(res.totalCount/100);
+        let arrayOfPages = new Array(totalPages).fill(0);
+        console.log(arrayOfPages);
+        setPages(arrayOfPages);
       });
   }, []);
 
@@ -156,9 +161,11 @@ function CustomerList() {
         <nav aria-label="Page navigation example">
       <ul class="pagination">
     <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-    <li class="page-item"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    {
+      pages.map((p,i)=>
+        <li class="page-item"><a class="page-link" href="#">{i+1}</a></li>
+        )
+    }
     <li class="page-item"><a class="page-link" href="#">Next</a></li>
   </ul>
 </nav>
