@@ -16,7 +16,11 @@ function CustomerList() {
 
   // Call the api.
   useEffect(() => {
-    fetch("http://localhost:4000/api/customer")
+    load(1);
+  }, []);
+
+  function load(pageNo){
+    fetch("http://localhost:4000/api/customer/page/"+pageNo)
       .then((res) => {
         return res.json();
       })
@@ -40,7 +44,7 @@ function CustomerList() {
         console.log(arrayOfPages);
         setPages(arrayOfPages);
       });
-  }, []);
+  }
 
   function handleNewCustomerClick() {
     navigate("form");
@@ -163,7 +167,11 @@ function CustomerList() {
     <li class="page-item"><a class="page-link" href="#">Previous</a></li>
     {
       pages.map((p,i)=>
-        <li class="page-item"><a class="page-link" href="#">{i+1}</a></li>
+        <li class="page-item"><button class="page-link" 
+        onClick={()=>{
+          load(i+1);
+        }}
+        >{i+1}</button></li>
         )
     }
     <li class="page-item"><a class="page-link" href="#">Next</a></li>
