@@ -57,7 +57,10 @@ function CustomerList() {
       .then((res) => {
         return res.json();
       })
-      .then((res) => setCustomers(res));
+      .then((res) => {
+        setCustomers(res);
+        setFilteredCustomers(res);
+      });
   }
 
   function handleEditClick(name) {

@@ -12,23 +12,21 @@ function CustomerForm() {
   const navigate = useNavigate();
   useEffect(() => {
     if (customerName) {
-      fetch("http://localhost:4000/api/customer")
+      fetch("http://localhost:4000/api/customer/"+customerName)
         .then((res) => {
           return res.json();
         })
         .then((res) => {
-          let result = res.find((c) => c.name === customerName);
-          if (result) {
-            setUpdateCustomer(result);
-          }
+          setUpdateCustomer(res);
         });
     }
   }, []);
 
   function handleFormSubmit() {
+
     console.log(customerToUpdate);
     fetch("http://localhost:4000/api/customer", {
-      method: "POST",
+      method: customerName ? "PUT" : "POST",
       body: JSON.stringify(customerToUpdate),
       headers: {
         "Content-Type": "application/json",
@@ -156,7 +154,14 @@ function CustomerForm() {
           onClick={handleFormSubmit}
           className="btn btn-primary float-end"
           type="button">
-          Create New Customer
+           {
+            customerName &&
+           <span> Update Customer</span>
+           }
+            {
+            !customerName &&
+           <span> Create New Customer</span>
+           }
         </button>
       </div>
     </div>
