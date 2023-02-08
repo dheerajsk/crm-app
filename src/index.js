@@ -39,6 +39,12 @@ root.render(
         }>
         </Route>
 
+        <Route path='/ticketform/:desc' element={
+          <SecuredRoutes>
+            <TicketForm />
+          </SecuredRoutes>}>
+        </Route>
+
         <Route path='/users' element={
         <SecuredRoutes value="10">
           <UserList />

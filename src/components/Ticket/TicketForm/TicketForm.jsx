@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import NavBar from "../../Navbar/Navbar";
 
 
 function TicketForm(){
 
     const navigate = useNavigate();
+    const { desc } = useParams();
 
     const [users, setUsers]=useState([]);
     const [customers, setCustomers]=useState([]);
@@ -22,6 +23,12 @@ function TicketForm(){
       fetch("http://localhost:4000/api/customer")
         .then(res=> res.json())
           .then(parsedRes=> setCustomers(parsedRes));
+      
+      if(desc){
+        fetch("http://localhost:4000/api/ticket/"+desc)
+        .then(res=> res.json())
+        .then(parsedRes=> setTicket(parsedRes));
+      }
     })
 
     function handleNewTicketClick(){
@@ -30,7 +37,7 @@ function TicketForm(){
             setValueMissing(true);
         }
         fetch("http://localhost:4000/api/ticket",{
-            method:"POST",
+            method:desc ? 'PUT' : "POST",
             body:JSON.stringify(ticket),
             headers: {
                 "Content-Type": "application/json",
@@ -58,6 +65,7 @@ Please select a status.
           </label>
           <select 
             name="customer"
+            disabled={desc}
             onChange={
               (e)=>{
                 let obj = { ...ticket };
@@ -68,7 +76,7 @@ Please select a status.
           className="form-select">
             {
               customers.map(c=>
-                <option value={c.name}>{c.name}</option>
+                <option selected={c.name==ticket.customer} value={c.name}>{c.name}</option>
                 )
             }
           </select>
@@ -105,7 +113,9 @@ Please select a status.
           className="form-select">
             {
               users.map(u=>
-                <option value={u.name}>{u.name}</option>
+                <option 
+                selected={u.name==ticket.assignedTo} 
+                value={u.name}>{u.name}</option>
                 )
             }
           </select>
@@ -125,10 +135,10 @@ Please select a status.
             }
           className="form-select">
             <option value="Select">Please Select</option>
-            <option value="New">New</option>
-            <option value="Assigned">Assigned</option>
-            <option value="In Progress">In Progress</option>
-            <option value="Resolved">Resolved</option>
+            <option  selected={"New"==ticket.status} value="New">New</option>
+            <option selected={"Assigned"==ticket.status}value="Assigned">Assigned</option>
+            <option selected={"In Progress"==ticket.status}value="In Progress">In Progress</option>
+            <option selected={"Resolved"==ticket.status} value="Resolved">Resolved</option>
           </select>
         </div>
 
@@ -139,6 +149,7 @@ Please select a status.
           <input
             name="raisedOn"
             value={ticket.raisedOn}
+            readOnly={desc}
             onInput={(e) => {
               let obj = { ...ticket };
               obj.raisedOn = e.target.value;
@@ -150,7 +161,17 @@ Please select a status.
 
         <button 
         onClick={handleNewTicketClick}
-        className="btn btn-success float-end">Create Ticket</button>
+        className="btn btn-success float-end">
+          {
+            desc &&
+            <span>Update Ticket</span>
+          }
+          {
+            !desc &&
+            <span>Create Ticket</span>
+          }
+        
+          </button>
             
             </div>
         </div>
