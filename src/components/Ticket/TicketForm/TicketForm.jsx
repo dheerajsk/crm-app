@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../../Navbar/Navbar";
 
@@ -7,8 +7,22 @@ function TicketForm(){
 
     const navigate = useNavigate();
 
+    const [users, setUsers]=useState([]);
+    const [customers, setCustomers]=useState([]);
     const [ticket, setTicket] = useState({});
     const [valueMissing, setValueMissing]=useState(false);
+
+    useEffect(()=>{
+      // To get users.
+      fetch("http://localhost:4000/api/user")
+        .then((res)=> res.json())
+          .then((parsedRes)=> setUsers(parsedRes));
+      
+      // To get customers.
+      fetch("http://localhost:4000/api/customer")
+        .then(res=> res.json())
+          .then(parsedRes=> setCustomers(parsedRes));
+    })
 
     function handleNewTicketClick(){
         setValueMissing(false);
@@ -39,18 +53,25 @@ Please select a status.
 </div>
                 }
             <div className="mb-3">
-          <label htmlFor="exampleFormControlInput1" className="form-label">
+          <label htmlFor="customer" className="form-label">
             Customer Name
           </label>
-          <input
-            value={ticket.customer}
-            onInput={(e) => {
-              let obj = { ...ticket };
-              obj.customer = e.target.value;
-              setTicket(obj);
-            }}
-            type="text"
-            className="form-control"></input>
+          <select 
+            name="customer"
+            onChange={
+              (e)=>{
+                let obj = { ...ticket };
+                obj.customer = e.target.value;
+                setTicket(obj);
+              }
+            }
+          className="form-select">
+            {
+              customers.map(c=>
+                <option value={c.name}>{c.name}</option>
+                )
+            }
+          </select>
         </div>
 
         <div className="mb-3">
@@ -73,16 +94,21 @@ Please select a status.
           <label htmlFor="assignedTo" className="form-label">
             Assigned To
           </label>
-          <input
-            name="assignedTo"
-            value={ticket.assignedTo}
-            onInput={(e) => {
-              let obj = { ...ticket };
-              obj.assignedTo = e.target.value;
-              setTicket(obj);
-            }}
-            type="text"
-            className="form-control"></input>
+          <select 
+            onChange={
+              (e)=>{
+                let obj = { ...ticket };
+                obj.assignedTo = e.target.value;
+                setTicket(obj);
+              }
+            }
+          className="form-select">
+            {
+              users.map(u=>
+                <option value={u.name}>{u.name}</option>
+                )
+            }
+          </select>
         </div>
 
         <div className="mb-3">

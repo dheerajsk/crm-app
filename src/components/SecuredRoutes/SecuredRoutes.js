@@ -18,7 +18,7 @@ function SecuredRoutes(props){
     return(
         <React.Fragment>
             {
-                loggedIn ? props.children : null
+                loggedIn && props.children
             }
         </React.Fragment>
         

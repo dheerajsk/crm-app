@@ -40,7 +40,7 @@ root.render(
         </Route>
 
         <Route path='/users' element={
-        <SecuredRoutes>
+        <SecuredRoutes value="10">
           <UserList />
         </SecuredRoutes>
         }>
