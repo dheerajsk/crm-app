@@ -12,7 +12,7 @@ function TicketList(){
                 .then((parsedRes)=>{
                     setTickets(parsedRes);
                 });
-    },[])
+    },[]);
     
 
     return (
@@ -20,6 +20,11 @@ function TicketList(){
             <NavBar />
             <div className="container">
 
+            <a 
+            href="/ticketform"
+            className="btn btn-success mb-3">
+                New Ticket
+            </a>
             <table className="table">
   <thead>
     <tr>
@@ -33,13 +38,13 @@ function TicketList(){
   <tbody>
     {
         tickets.map(t=>
-            <tr>
+        <tr>
             <td>{t.customer}</td>
             <td>{t.desc}</td>
             <td>{t.assignedTo}</td>
             <td>{t.status}</td>
             <td>{t.raisedOn}</td>
-          </tr>
+        </tr>
             )
     }
    

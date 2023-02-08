@@ -11,6 +11,7 @@ import SignIn from './components/SignIn/SignIn';
 import UserList from './components/User/UserList';
 import UserForm from './components/User/UserForm/UserForm';
 import TicketList from './components/Ticket/TicketList/TicketList';
+import TicketForm from './components/Ticket/TicketForm/TicketForm';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -28,6 +29,13 @@ root.render(
         <SecuredRoutes>
           <TicketList />
         </SecuredRoutes>
+        }>
+        </Route>
+
+        <Route path='/ticketform' element={
+          <SecuredRoutes>
+            <TicketForm />
+          </SecuredRoutes>
         }>
         </Route>
 
