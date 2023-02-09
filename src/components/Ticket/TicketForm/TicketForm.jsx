@@ -29,7 +29,7 @@ function TicketForm(){
         .then(res=> res.json())
         .then(parsedRes=> setTicket(parsedRes));
       }
-    })
+    },[])
 
     function handleNewTicketClick(){
         setValueMissing(false);
@@ -90,9 +90,13 @@ Please select a status.
             name="desc"
             value={ticket.desc}
             onInput={(e) => {
-              let obj = { ...ticket };
-              obj.desc = e.target.value;
-              setTicket(obj);
+              // let obj = { ...ticket };
+              // obj.desc = e.target.value;
+              // setTicket(obj);
+              setTicket({
+                ...ticket,
+                desc: e.target.value,
+              });
             }}
             type="text"
             className="form-control"></input>
