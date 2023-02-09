@@ -13,6 +13,11 @@ import UserForm from './components/User/UserForm/UserForm';
 import TicketList from './components/Ticket/TicketList/TicketList';
 import TicketForm from './components/Ticket/TicketForm/TicketForm';
 
+import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
+import 'primereact/resources/primereact.css';                       // core css
+import 'primeicons/primeicons.css';                                 // icons
+import 'primeflex/primeflex.css';  
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>

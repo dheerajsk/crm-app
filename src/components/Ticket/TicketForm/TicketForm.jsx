@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import NavBar from "../../Navbar/Navbar";
-
+import {Dropdown} from "primereact/dropdown";
 
 function TicketForm(){
 
@@ -12,6 +12,7 @@ function TicketForm(){
     const [customers, setCustomers]=useState([]);
     const [ticket, setTicket] = useState({});
     const [valueMissing, setValueMissing]=useState(false);
+
 
     useEffect(()=>{
       // To get users.
@@ -60,10 +61,12 @@ Please select a status.
 </div>
                 }
             <div className="mb-3">
+              <div>
           <label htmlFor="customer" className="form-label">
             Customer Name
           </label>
-          <select 
+          </div>
+          {/* <select 
             name="customer"
             disabled={desc}
             onChange={
@@ -79,7 +82,21 @@ Please select a status.
                 <option selected={c.name==ticket.customer} value={c.name}>{c.name}</option>
                 )
             }
-          </select>
+          </select> */}
+          <Dropdown value={ticket.customer}
+          onChange={(e) => {   
+            let obj = { ...ticket };
+            obj.customer = e.value;
+            setTicket(obj);
+          }
+          }
+          options={customers}
+          optionLabel="name"
+          placeholder="Select a customer"
+          filter
+          className="w-full"
+          />
+        
         </div>
 
         <div className="mb-3">
