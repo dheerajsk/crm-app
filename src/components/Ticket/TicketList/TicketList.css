@@ -1,0 +1,20 @@
+
+.ticket-search-box{
+    width: 250px;
+    border: none;
+    outline: none;
+}
+
+.ticket-search-box-wrapper{
+    display: flex;
+    align-items: center;
+    border: 1px solid lightblue;
+    border-radius: 6px;
+    padding: 6px 12px;
+    height: 40px;
+}
+
+.table-header{
+    display: flex;
+    justify-content: space-between;
+}
