@@ -83,10 +83,14 @@ Please select a status.
                 )
             }
           </select> */}
-          <Dropdown value={ticket.customer}
+          <Dropdown 
+          disabled={desc}
+          value={
+           customers.find(c=> c.name==ticket.customer)
+          }
           onChange={(e) => {   
             let obj = { ...ticket };
-            obj.customer = e.value;
+            obj.customer = e.value.name;
             setTicket(obj);
           }
           }

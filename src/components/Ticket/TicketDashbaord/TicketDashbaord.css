@@ -24,14 +24,19 @@
     color: white;
 }
 
-.tile-accepted{
+.tile-resolved{
     background-color: #198754;
     color: white;
 }
 
-.tile-rejected{
+.tile-progress{
     background-color: #dc3545;
     color: white;
+}
+
+.tile-assigned{
+    background-color:darkgoldenrod;
+    color: black;
 }
 
 .tile-text{

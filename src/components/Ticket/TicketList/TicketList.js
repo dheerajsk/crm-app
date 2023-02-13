@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../../Navbar/Navbar";
+import TicketDashbaord from "../TicketDashbaord/TicketDashbaord";
 import "./TicketList.css";
 
 function TicketList(){
 
     const [tickets, setTickets]=useState([]);
+    const [counts, setCounts]=useState({});
     const [filteredTickets, setFilteredTickets]=useState([]);
     const naviagte = useNavigate();
 
@@ -15,6 +17,14 @@ function TicketList(){
                 .then((parsedRes)=>{
                     setTickets(parsedRes);
                     setFilteredTickets(parsedRes);
+                    // Filter based on different statuses and update count state.
+                    let obj={};
+                    obj.total = parsedRes.length;
+                    obj.new = parsedRes.filter(t=> t.status=="New").length;
+                    obj.progress = parsedRes.filter(t=> t.status=="In Progress").length;
+                    obj.assigned = parsedRes.filter(t=> t.status=="Assigned").length;
+                    obj.resolved = parsedRes.filter(t=> t.status=="Resolved").length;
+                    setCounts(obj);
                 });
     },[]);
 
@@ -30,6 +40,7 @@ function TicketList(){
     return (
         <div>
             <NavBar />
+            <TicketDashbaord dashbaordCounts={counts} />
             <div className="container">
            <div className="table-header">
             <a 
