@@ -17,10 +17,15 @@ import 'primereact/resources/themes/lara-light-indigo/theme.css';   // theme
 import 'primereact/resources/primereact.css';                       // core css
 import 'primeicons/primeicons.css';                                 // icons
 import 'primeflex/primeflex.css';  
+import NavBar from './components/Navbar/Navbar';
+import SideMenu from './components/SideMenu/SideMenu';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    <div>
+       {/* <NavBar /> */}
+       <SideMenu />
      <BrowserRouter>
       <Routes>
         <Route path='/' element={
@@ -76,6 +81,7 @@ root.render(
         </Route>
       </Routes>
     </BrowserRouter>
+    </div>
   </React.StrictMode>
 );
 

@@ -6,11 +6,17 @@ function SideMenu(){
     return (
         <div>
             <Sidebar visible="true">
-            <h2>Sidebar</h2>
-            <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </p>
+            <div className="menus">
+                <p>
+                    <a className="navbar-brand" href="/">Home</a>
+                </p>
+                <p>
+                    <a className="navbar-brand" href="/users">Users</a>
+                </p>
+                <p>
+                     <a className="navbar-brand" href="/tickets">Tickets</a>
+                </p>
+            </div>
             </Sidebar>
         </div>
     );

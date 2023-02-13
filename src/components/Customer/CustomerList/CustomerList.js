@@ -93,7 +93,6 @@ function CustomerList() {
   return (
     <div>
        <NavBar />
-       <SideMenu />
     <div className="container">
 
       <CustomerDashboard counts={counts} />

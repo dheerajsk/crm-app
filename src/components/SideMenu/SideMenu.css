@@ -2,3 +2,17 @@
 .p-sidebar-close {
     display: none !important;
 }
+
+p{
+    padding: 12px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid lightgray;
+    font-size: large;
+    font-weight: 600;
+}
+
+.menus{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}
