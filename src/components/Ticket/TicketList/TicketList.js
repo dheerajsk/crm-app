@@ -37,6 +37,19 @@ function TicketList(){
        setFilteredTickets(result);
     }
 
+    function getStatusStyle(status){
+        switch(status){
+            case "New":
+                return "td-status-new";
+            case "Assigned":
+                return "td-status-assigned";
+            case "In Progress":
+                return "td-status-progress";
+            case "Resolved":
+                return "td-status-resolved";
+        }
+    }
+
     return (
         <div>
             <NavBar />
@@ -76,7 +89,9 @@ function TicketList(){
             <td>{t.customer}</td>
             <td>{t.desc}</td>
             <td>{t.assignedTo}</td>
-            <td>{t.status}</td>
+            <td 
+            className={getStatusStyle(t.status)}
+            >{t.status}</td>
             <td>{t.raisedOn}</td>
             <td>
                 <button 

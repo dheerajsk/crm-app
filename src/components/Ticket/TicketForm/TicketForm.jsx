@@ -83,7 +83,7 @@ Please select a status.
                 )
             }
           </select> */}
-          <Dropdown 
+          {/* <Dropdown 
           disabled={desc}
           value={
            customers.find(c=> c.name==ticket.customer)
@@ -99,6 +99,16 @@ Please select a status.
           placeholder="Select a customer"
           filter
           className="w-full"
+          /> */}
+          <Dropdown
+         disabled={desc}
+         value={customers.find(c => c.name == ticket.customer)}
+          onChange={(e) => {setTicket({...ticket,customer: e.value.name})}}
+          options={customers}
+          optionLabel="name"
+          placeholder="Select a customer"
+          filter
+          className="w-full mb-3"
           />
         
         </div>
