@@ -2,7 +2,9 @@ import "./CustomerList.css";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../../Navbar/Navbar";
+import SideMenu from "../../SideMenu/SideMenu";
 import CustomerDashboard from "../../CustomerDashbaord/CustomerDashboard";
+
 
 function CustomerList() {
   // Storing data in state
@@ -91,6 +93,7 @@ function CustomerList() {
   return (
     <div>
        <NavBar />
+       <SideMenu />
     <div className="container">
 
       <CustomerDashboard counts={counts} />
