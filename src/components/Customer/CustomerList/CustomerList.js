@@ -92,6 +92,7 @@ function CustomerList() {
 
   return (
     <div>
+      <SideMenu />
        <NavBar />
     <div className="container">
 

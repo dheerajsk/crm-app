@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import NavBar from "../../Navbar/Navbar";
+import SideMenu from "../../SideMenu/SideMenu";
 import TicketDashbaord from "../TicketDashbaord/TicketDashbaord";
 import "./TicketList.css";
 
@@ -53,6 +54,7 @@ function TicketList(){
     return (
         <div>
             <NavBar />
+            <SideMenu />
             <TicketDashbaord dashbaordCounts={counts} />
             <div className="container">
            <div className="table-header">

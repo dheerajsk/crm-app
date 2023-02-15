@@ -25,7 +25,7 @@ root.render(
   <React.StrictMode>
     <div>
        {/* <NavBar /> */}
-       <SideMenu />
+       
      <BrowserRouter>
       <Routes>
         <Route path='/' element={

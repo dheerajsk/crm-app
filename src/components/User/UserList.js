@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import NavBar from "../Navbar/Navbar";
+import SideMenu from "../SideMenu/SideMenu";
 import "./UserList.css";
 
 function UserList(){
@@ -37,7 +38,7 @@ function UserList(){
     return(
         <div>
             <NavBar />
-
+            <SideMenu />
             <div className="container">
             <a href="/userForm" className="btn btn-success">
                 New User
