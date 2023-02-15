@@ -11,7 +11,7 @@ function SignIn() {
   const handleLoginClick = () => {
     console.log(loginDetails);
     setInvalidCreds(false);
-    fetch("http://localhost:4000/api/user/signin",{
+    fetch(process.env.REACT_APP_APIURL+"user/signin",{
       method:"POST",
       body:JSON.stringify(loginDetails),
       headers:{

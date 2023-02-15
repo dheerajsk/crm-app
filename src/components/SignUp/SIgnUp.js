@@ -9,7 +9,7 @@ function SignUp() {
   function handleRegister() {
     console.log(user);
     // fetch returns a promise.
-    fetch("http://localhost:4000/api/user/signup", {
+    fetch(process.env.REACT_APP_APIURL+"user/signup", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

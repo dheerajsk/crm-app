@@ -9,7 +9,7 @@ function UserList(){
 
     useEffect(()=>{
         // call api to get data.
-        fetch("http://localhost:4000/api/user")
+        fetch(process.env.REACT_APP_APIURL+"user")
             .then(
                 // convert data to json format.
                 res => res.json()
@@ -20,14 +20,14 @@ function UserList(){
     },[]);
 
     function handleActivateClick(username){
-      fetch("http://localhost:4000/api/user/activate/"+username, {
+      fetch(process.env.REACT_APP_APIURL+"user/activate/"+username, {
         method:"PUT"
       }).then(res=> res.json())
           .then(parsedResponse => setUsers(parsedResponse));
     }
 
     function handleDeActivateClick(username){
-      fetch("http://localhost:4000/api/user/deactivate/"+username, {
+      fetch(process.env.REACT_APP_APIURL+"user/deactivate/"+username, {
         method:"PUT"
       }).then(res=> res.json())
           .then(parsedResponse => setUsers(parsedResponse));

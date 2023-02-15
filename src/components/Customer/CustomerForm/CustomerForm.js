@@ -12,7 +12,7 @@ function CustomerForm() {
   const navigate = useNavigate();
   useEffect(() => {
     if (customerName) {
-      fetch("http://localhost:4000/api/customer/"+customerName)
+      fetch(process.env.REACT_APP_APIURL+"customer/"+customerName)
         .then((res) => {
           return res.json();
         })
@@ -25,7 +25,7 @@ function CustomerForm() {
   function handleFormSubmit() {
 
     console.log(customerToUpdate);
-    fetch("http://localhost:4000/api/customer", {
+    fetch(process.env.REACT_APP_APIURL+"customer", {
       method: customerName ? "PUT" : "POST",
       body: JSON.stringify(customerToUpdate),
       headers: {

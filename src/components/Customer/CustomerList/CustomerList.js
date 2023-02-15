@@ -22,7 +22,7 @@ function CustomerList() {
   }, []);
 
   function load(pageNo){
-    fetch("http://localhost:4000/api/customer/page/"+pageNo)
+    fetch(process.env.REACT_APP_APIURL+"customer/page/"+pageNo)
       .then((res) => {
         return res.json();
       })
@@ -53,7 +53,7 @@ function CustomerList() {
   }
 
   function handleDeleteClick(name) {
-    fetch("http://localhost:4000/api/customer/"+name, {
+    fetch(process.env.REACT_APP_APIURL+"customer/"+name, {
       method:"DELETE"
     })
       .then((res) => {

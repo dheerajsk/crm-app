@@ -16,17 +16,17 @@ function TicketForm(){
 
     useEffect(()=>{
       // To get users.
-      fetch("http://localhost:4000/api/user")
+      fetch(process.env.REACT_APP_APIURL+"user")
         .then((res)=> res.json())
           .then((parsedRes)=> setUsers(parsedRes));
       
       // To get customers.
-      fetch("http://localhost:4000/api/customer")
+      fetch(process.env.REACT_APP_APIURL+"customer")
         .then(res=> res.json())
           .then(parsedRes=> setCustomers(parsedRes));
       
       if(desc){
-        fetch("http://localhost:4000/api/ticket/"+desc)
+        fetch(process.env.REACT_APP_APIURL+"ticket/"+desc)
         .then(res=> res.json())
         .then(parsedRes=> setTicket(parsedRes));
       }
@@ -37,7 +37,7 @@ function TicketForm(){
         if(!ticket.status){
             setValueMissing(true);
         }
-        fetch("http://localhost:4000/api/ticket",{
+        fetch(process.env.REACT_APP_APIURL+"ticket",{
             method:desc ? 'PUT' : "POST",
             body:JSON.stringify(ticket),
             headers: {
